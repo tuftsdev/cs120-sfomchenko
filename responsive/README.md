@@ -11,12 +11,12 @@ Lab5
 
 ### Identify what aspects of the work have been correctly implemented and what have not.
 
-* Enter info here
+* To the best of my knowledge, I implemented the requirements as expected.
 
 ### Identify anyone with whom you have collaborated or discussed the lab.
 
-* Enter info here
+* No one.
 
 ### Say approximately how many hours you have spent completing the lab.
 
-* Enter info here
+* Aproximately 2 hours, however was working on it at a leisurely pace.
