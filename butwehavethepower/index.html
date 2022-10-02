@@ -16,16 +16,12 @@
 <script>
 	// Complete this section and create a CSS file named style.css
 	var theVideo = document.getElementById("butwehavethepower");
+	var theLyrics = document.getElementById("lyrics");
 	theVideo.addEventListener('play', showLyrics);
-	function test()
-	{
-		console.log("test");
-	}
 
 	function showLyrics()
 	{
-		console.log("Made it here");
-	    document.write("Come gather round, children, It's high time ye learned 'Bout a hero named Homer And a devil named Burns.");
+		 theLyrics.innerHTML="<h1>Come gather round, children, It's high time ye learned 'Bout a hero named Homer And a devil named Burns.</h1>";
 	}
 	
 </script>
