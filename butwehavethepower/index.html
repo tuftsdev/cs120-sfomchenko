@@ -17,11 +17,34 @@
 	// Complete this section and create a CSS file named style.css
 	var theVideo = document.getElementById("butwehavethepower");
 	var theLyrics = document.getElementById("lyrics");
-	theVideo.addEventListener('play', showLyrics);
+	theVideo.ontimeupdate = function() {showLyrics()};
+	// theVideo.addEventListener('play', showLyrics);
 
 	function showLyrics()
 	{
-		 theLyrics.innerHTML="<h1>Come gather round, children, It's high time ye learned 'Bout a hero named Homer And a devil named Burns.</h1>";
+		
+		if (theVideo.currentTime < 6) 
+		{
+			console.log("Here");
+			theLyrics.innerHTML= "<h3>Instrumentals</h3>";
+		}
+		else if (theVideo.currentTime > 6 && theVideo.currentTime < 17) 
+		{
+			console.log("Here2");
+			theLyrics.innerHTML= "<h1>Come gather round, children, It's high time ye learned 'Bout a hero named Homer And a devil named Burns.</h1>";
+		}
+		else if (theVideo.currentTime > 17 && theVideo.currentTime < 26) 
+		{
+			console.log("Here2");
+			theLyrics.innerHTML="<h1>We'll march 'till we drop The girls and the fellas. We'll fight 'till the death Or else fold like umbrellas.</h1>";
+		}
+		// else
+		// {
+		// 	playingVid=true;
+		// }
+		
+		
+		 
 	}
 	
 </script>
