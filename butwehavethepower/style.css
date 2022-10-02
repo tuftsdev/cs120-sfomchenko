@@ -1,4 +1,21 @@
-#lyrics
+#title
 {
-	grid: ;
-};
+	color: black;
+	background-color: lightyellow;
+}
+.lightsoff
+{
+	color: white;
+}
+body
+{
+	background-color: lightskyblue;
+}
+h1
+{
+	color: white;
+}
+h3
+{
+	font-style: italic;
+}

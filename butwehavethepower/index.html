@@ -18,22 +18,22 @@
 	var theVideo = document.getElementById("butwehavethepower");
 	var theLyrics = document.getElementById("lyrics");
 	theVideo.ontimeupdate = function() {showLyrics()};
-	// theVideo.addEventListener('play', showLyrics);
 
 	function showLyrics()
 	{
 		
 		if (theVideo.currentTime < 6) 
 		{
+			document.body.style.backgroundColor = "lightskyblue";
 			theLyrics.innerHTML= "<h3>Instrumentals</h3>";
 		}
 		else if (theVideo.currentTime > 6 && theVideo.currentTime < 17) 
 		{
-			theLyrics.innerHTML= "<h1>Come gather round, children, It's high time ye learned 'Bout a hero named Homer And a devil named Burns.</h1>";
+			theLyrics.innerHTML= "<h2>Come gather round, children, It's high time ye learned 'Bout a hero named Homer And a devil named Burns.</h2>";
 		}
 		else if (theVideo.currentTime > 17 && theVideo.currentTime < 27) 
 		{
-			theLyrics.innerHTML="<h1>We'll march 'till we drop The girls and the fellas. We'll fight 'till the death Or else fold like umbrellas.</h1>";
+			theLyrics.innerHTML="<h2>We'll march 'till we drop The girls and the fellas. We'll fight 'till the death Or else fold like umbrellas.</h2>";
 		}
 		else if (theVideo.currentTime > 27 && theVideo.currentTime < 37) 
 		{
@@ -41,22 +41,23 @@
 		}
 		else if (theVideo.currentTime > 37 && theVideo.currentTime < 45) 
 		{
-			theLyrics.innerHTML="<h1>So we'll march day and night By the big cooling tower. They have the plant</h1>";
+			theLyrics.innerHTML="<h2>So we'll march day and night By the big cooling tower. They have the plant</h2>";
 		}
 		else if (theVideo.currentTime > 45 && theVideo.currentTime < 52) 
 		{
-			theLyrics.innerHTML="<h1>But we have the power</h1>";
+			theLyrics.innerHTML="<h2>But we have the power</h2>";
 		}
 		else if (theVideo.currentTime > 52 && theVideo.currentTime < 55) 
 		{
-			theLyrics.innerHTML="<h1>Now do Classical Gas!</h1>";
+			theLyrics.innerHTML="<h2>Now do Classical Gas!</h2>";
 		}
-		else if (theVideo.currentTime > 55 && theVideo.currentTime < 67) 
+		else if (theVideo.currentTime > 55 && theVideo.currentTime < 68) 
 		{
-			theLyrics.innerHTML="<h1>Instrumentals</h1>";
+			theLyrics.innerHTML="<h3>Instrumentals</h3>";
 		}
-		else if (theVideo.currentTime > 67 && theVideo.currentTime < 70) 
+		else if (theVideo.currentTime > 68 && theVideo.currentTime < 70) 
 		{
+			document.body.style.backgroundColor = "darkblue";
 			theLyrics.innerHTML="<h1>Lights go off</h1>";
 		}
 		else if (theVideo.currentTime > 70 && theVideo.currentTime < 72) 
@@ -89,14 +90,12 @@
 		}
 		else if (theVideo.currentTime > 91 && theVideo.currentTime < 111) 
 		{
-			theLyrics.innerHTML="<h1>Burns being a menace, but ready to talk</h1>";
+			theLyrics.innerHTML="<h1>Burn is being a menace, but ready to talk</h1>";
 		}
-
-
-		// else
-		// {
-		// 	playingVid=true;
-		// }
+		else
+		{
+			theLyrics.innerHTML="<h1>Enjoy!</h1>";
+		}
 		
 		
 		 
