@@ -15,7 +15,7 @@
           var content = parsedJsonData[i].content;
           var user = parsedJsonData[i].username;
           var msg = '\n'+content+" "+user+'\n';
-          document.getElementById("messages").innerHTML+=msg;
+          document.getElementById("messages").innerHTML+="<p>"+msg+"</p>";
       }
     }
   </script>
