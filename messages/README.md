@@ -12,11 +12,11 @@ Lab7
 
 ### Identify what aspects of the work have been correctly implemented and what have not.
 
-* Everything works, although I can only seem to get the messages to appear side by side instead of a list view.
+* Everything works, I was able to get the messages to appear list view
 
 ### Identify anyone with whom you have collaborated or discussed the lab.
 
-* No one.
+* No one directly, I did ask in class about how to resolve my side by side issue.
 
 ### Say approximately how many hours you have spent completing the lab.
 
