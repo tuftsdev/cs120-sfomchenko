@@ -40,22 +40,10 @@ function init()
         			
         			console.log("Passed readyState");
         			resultingData = request.responseText; // responseText => string
-					parsedJsonData = JSON.parse(resultingData);
-					console.log(jsonData);
-					// for (var i = 0; i < parsedJsonData.length; i++) 
-			  //       {
-			  //           var vid = parsedJsonData[i].id;
-			  //           var lat = parsedJsonData[i].latitude;
-			  //           var lon = parsedJsonData[i].longitude;
-			  //           var notUber = new google.maps.LatLng(lat, lon);
-			  //           var marker = new google.maps.Marker({
-			  //             position: notUber,
-			  //             title: vid,
-			  //             icon: car
-			  //           });
-			  //           marker.setMap(map);
-
-			  //       }
+					parsedData = JSON.parse(resultingData);
+					console.log(parsedData);
+					// picSection = document.getElementById("meow");
+					// picSection.innerHTML = picSection.innerHTML + "<img src=" + catData.file + ">"; 
         		}
         		
     		}
