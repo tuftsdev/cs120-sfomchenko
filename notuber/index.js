@@ -13,12 +13,12 @@ function init()
           		mapTypeId: google.maps.MapTypeId.ROADMAP
           	};
           	var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-          	var m = new google.maps.Marker(
-          	{
-          		position: landmark,
-          		title: "Home"
-          	});
-          	m.setMap(map);
+          	// var m = new google.maps.Marker(
+          	// {
+          	// 	position: landmark,
+          	// 	title: "Home"
+          	// });
+          	// m.setMap(map);
           	const car = "car.png";
 
         	// Step 1: make an instance of XHR
@@ -37,6 +37,7 @@ function init()
         			const car = "car.png";
         			resultingData = request.responseText; // responseText => string
 					parsedData = JSON.parse(resultingData);
+					var closestCar;
 					for (var i = 0; i < parsedData.length; i++) 
 			        {
 			        	var createOn = parsedData[i].created_on;
@@ -45,6 +46,13 @@ function init()
 			            var long = parsedData[i].lng;
 			            var usName = parsedData[i].username;
 			            var notUber = new google.maps.LatLng(lati, long);
+			            var dis = google.maps.geometry.spherical.computeDistanceBetween(landmark, notUber);
+			            var disMiles = dis * 0.000621371;
+			            console.log(disMiles);
+			            if (true) 
+			            {
+
+			            }
 			            var marker = new google.maps.Marker({
 			            	position: notUber,
 			              	title: usName,
@@ -53,6 +61,12 @@ function init()
 			            marker.setMap(map);
 
 			        }
+			        var m = new google.maps.Marker(
+		          	{
+		          		position: landmark,
+		          		title: "Home"
+		          	});
+		          	m.setMap(map);
 			        var infowindow = new google.maps.InfoWindow();
 			        google.maps.event.addListener(marker, 'click', function() 
 		            {
