@@ -38,6 +38,7 @@ function init()
         			resultingData = request.responseText; // responseText => string
 					parsedData = JSON.parse(resultingData);
 					var closestCar;
+					const carArr=[];
 					for (var i = 0; i < parsedData.length; i++) 
 			        {
 			        	var createOn = parsedData[i].created_on;
@@ -48,30 +49,33 @@ function init()
 			            var notUber = new google.maps.LatLng(lati, long);
 			            var dis = google.maps.geometry.spherical.computeDistanceBetween(landmark, notUber);
 			            var disMiles = dis * 0.000621371;
-			            console.log(disMiles);
-			            if (true) 
-			            {
-
-			            }
-			            var marker = new google.maps.Marker({
+			            carArr.push(disMiles);
+			            var markerCar = new google.maps.Marker({
 			            	position: notUber,
 			              	title: usName,
 			              	icon: car
 			            });
-			            marker.setMap(map);
+			            markerCar.setMap(map);
 
 			        }
-			        var m = new google.maps.Marker(
+			        closestCar = Math.min.apply(Math, carArr);
+			        var marker = new google.maps.Marker(
 		          	{
 		          		position: landmark,
 		          		title: "Home"
 		          	});
-		          	m.setMap(map);
-			        var infowindow = new google.maps.InfoWindow();
+		          	marker.setMap(map);
+			        var infowindow = new google.maps.InfoWindow(
+			        	{  content:"Closest Car is: "+closestCar
+			        	});
 			        google.maps.event.addListener(marker, 'click', function() 
 		            {
-		            	infowindow.setContent(marker.title);
 		          		infowindow.open(map, marker);
+		          	});
+		          	google.maps.event.addListener(markerCar, 'click', function() 
+		            {
+		            	infowindow.setContent(markerCar.title);
+		          		infowindow.open(map, markerCar);
 		          	});
         		}
         		
