@@ -59,11 +59,38 @@ function init()
 
 			        }
 			        closestCar = Math.min.apply(Math, carArr);
+			        for (var i = 0; i < parsedData.length; i++) 
+			        {
+			        	var createOn = parsedData[i].created_on;
+			            var vid = parsedData[i].id;
+			            var lati = parsedData[i].lat;
+			            var long = parsedData[i].lng;
+			            var usName = parsedData[i].username;
+			            var notUber = new google.maps.LatLng(lati, long);
+			            var dis = google.maps.geometry.spherical.computeDistanceBetween(landmark, notUber);
+			            var disMiles = dis * 0.000621371;
+			            if (disMiles==closestCar) 
+			            {
+			            	const carPath = new google.maps.Polyline(
+					        {
+							    path: [landmark, notUber],
+							    geodesic: true,
+							    strokeColor: "#FF0000",
+							    strokeOpacity: 1.0,
+							    strokeWeight: 2,
+							});
+							carPath.setMap(map);
+			            }
+
+			        }
+			        
+
 			        var marker = new google.maps.Marker(
 		          	{
 		          		position: landmark,
 		          		title: "Home"
 		          	});
+
 		          	marker.setMap(map);
 			        var infowindow = new google.maps.InfoWindow(
 			        	{  content:"Closest Car is: "+closestCar

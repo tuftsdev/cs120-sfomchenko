@@ -1,5 +1,5 @@
 # Project Title
-Lab8
+Lab10
 
 ## Required Qestions
 
@@ -10,11 +10,11 @@ Lab8
 
 ### Identify anyone with whom you have collaborated or discussed the lab.
 
-* No one directly, did ask a clarifying question on piazza.
+* No one.
 
 ### Say approximately how many hours you have spent completing the lab.
 
-* 2.5 hours
+* 3 hours
 
 ### Impact of performance
 
