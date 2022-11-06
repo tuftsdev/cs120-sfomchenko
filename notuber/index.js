@@ -13,12 +13,6 @@ function init()
           		mapTypeId: google.maps.MapTypeId.ROADMAP
           	};
           	var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-          	// var m = new google.maps.Marker(
-          	// {
-          	// 	position: landmark,
-          	// 	title: "Home"
-          	// });
-          	// m.setMap(map);
           	const car = "car.png";
 
         	// Step 1: make an instance of XHR
@@ -26,7 +20,7 @@ function init()
         
 
         	// Step 2: Make request to the JSON source...
-        	request.open('POST', 'https://jordan-marsh.herokuapp.com/rides', true);
+        	request.open('POST', 'https://quiet-cliffs-10971.herokuapp.com/rides', true);
         	request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         	// Step 2A: Dealing with receiving the HTTP response from XHR
         	request.onreadystatechange = function() 
@@ -37,18 +31,21 @@ function init()
         			const car = "car.png";
         			resultingData = request.responseText; // responseText => string
 					parsedData = JSON.parse(resultingData);
+					console.log(parsedData);
 					var closestCar;
 					const carArr=[];
 					for (var i = 0; i < parsedData.length; i++) 
 			        {
-			        	var createOn = parsedData[i].created_on;
-			            var vid = parsedData[i].id;
+			        	
+			            var vid = parsedData[i]._id;
+			            var usName = parsedData[i].username;
 			            var lati = parsedData[i].lat;
 			            var long = parsedData[i].lng;
-			            var usName = parsedData[i].username;
+			            var createOn = parsedData[i].created_at;
 			            var notUber = new google.maps.LatLng(lati, long);
 			            var dis = google.maps.geometry.spherical.computeDistanceBetween(landmark, notUber);
 			            var disMiles = dis * 0.000621371;
+			            
 			            carArr.push(disMiles);
 			            var markerCar = new google.maps.Marker({
 			            	position: notUber,
