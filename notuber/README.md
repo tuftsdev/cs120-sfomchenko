@@ -1,12 +1,12 @@
 # Project Title
-Lab10
+Lab12
 
 ## Required Qestions
 
 
 ### Identify what aspects of the work have been correctly implemented and what have not.
 
-* All aspects of the projects are implemented.
+* The base requirement is implemented. I implemented Beyond point 1 and Beyond point 5.
 
 ### Identify anyone with whom you have collaborated or discussed the lab.
 
@@ -14,7 +14,7 @@ Lab10
 
 ### Say approximately how many hours you have spent completing the lab.
 
-* 3 hours
+* 10 hours
 
 ### Impact of performance
 
