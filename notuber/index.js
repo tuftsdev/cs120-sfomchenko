@@ -31,7 +31,6 @@ function init()
         			const car = "car.png";
         			resultingData = request.responseText; // responseText => string
 					parsedData = JSON.parse(resultingData);
-					console.log(parsedData);
 					var closestCar;
 					const carArr=[];
 					for (var i = 0; i < parsedData.length; i++) 
