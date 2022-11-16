@@ -6,7 +6,7 @@ function init()
     {
   		var lat = position.coords.latitude;
   		var lng = position.coords.longitude;
-  		const landmark = new google.maps.LatLng("42.4059372", "-71.1211839");
+  		const landmark = new google.maps.LatLng("42.4085371", "-71.1204669");
   		var myOptions = 
   		{
   			zoom: 12, 
@@ -77,13 +77,6 @@ function init()
 
 		        }
 		        
-
-		        var marker = new google.maps.Marker(
-	          	{
-	          		position: landmark,
-	          		title: "Home"
-	          	});
-
 	          	marker.setMap(map);
 		        var infowindow = new google.maps.InfoWindow(
 		        	{  content:"Closest Car is: "+closestCar
@@ -108,7 +101,7 @@ function init()
     	request.send(params);
 
 
-
+        const landmark2 = new google.maps.LatLng("42.4085371", "-71.1204669");
     	// Step 1: make an instance of XHR
     	requestVehicles = new XMLHttpRequest();
     
@@ -133,7 +126,7 @@ function init()
 		            var lati = parsedData[i].lat;
 		            var long = parsedData[i].lng;
 		            var notUber = new google.maps.LatLng(lati, long);
-		            var dis = google.maps.geometry.spherical.computeDistanceBetween(landmark, notUber);
+		            var dis = google.maps.geometry.spherical.computeDistanceBetween(landmark2, notUber);
 		            var disMiles = dis * 0.000621371;
 		            
 		            passengerArr.push(disMiles);
@@ -151,13 +144,13 @@ function init()
 		            var long = parsedData[i].lng;
 		            var usName = parsedData[i].username;
 		            var notUber = new google.maps.LatLng(lati, long);
-		            var dis = google.maps.geometry.spherical.computeDistanceBetween(landmark, notUber);
+		            var dis = google.maps.geometry.spherical.computeDistanceBetween(landmark2, notUber);
 		            var disMiles = dis * 0.000621371;
 		            if (disMiles==closestPassenger) 
 		            {
 		            	const passPath = new google.maps.Polyline(
 				        {
-						    path: [landmark, notUber],
+						    path: [landmark2, notUber],
 						    geodesic: true,
 						    strokeColor: "#FF0000",
 						    strokeOpacity: 1.0,
@@ -168,14 +161,6 @@ function init()
 
 		        }
 		        
-
-		        var marker = new google.maps.Marker(
-	          	{
-	          		position: landmark,
-	          		title: "Home"
-	          	});
-
-	          	marker.setMap(map);
 		        var infowindow = new google.maps.InfoWindow(
 		        	{  content:"Closest Passenger is: "+closestPassenger
 		        	});
