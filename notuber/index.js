@@ -1,1 +1,202 @@
-function init(){navigator.geolocation.getCurrentPosition(function e(t){var n=t.coords.latitude,a=t.coords.longitude;let o=new google.maps.LatLng(n,a);var s={zoom:2,center:o,mapTypeId:google.maps.MapTypeId.ROADMAP},r=new google.maps.Map(document.getElementById("map_canvas"),s);(request=new XMLHttpRequest).open("POST","https://quiet-cliffs-10971.herokuapp.com/rides",!0),request.setRequestHeader("Content-type","application/x-www-form-urlencoded"),request.onreadystatechange=function(){if(4==request.readyState&&200==request.status){parsedData=JSON.parse(resultingData=request.responseText);let e=[];for(var t,n=0;n<parsedData.length;n++){parsedData[n]._id;var a=parsedData[n].username,s=parsedData[n].lat,p=parsedData[n].lng;parsedData[n].created_at;var i=new google.maps.LatLng(s,p),c=google.maps.geometry.spherical.computeDistanceBetween(o,i),l=621371e-9*c;e.push(l);var m=new google.maps.Marker({position:i,title:a,icon:"car.png"});m.setMap(r)}t=Math.min.apply(Math,e);for(var n=0;n<parsedData.length;n++){parsedData[n].created_on,parsedData[n].id;var s=parsedData[n].lat,p=parsedData[n].lng,a=parsedData[n].username,i=new google.maps.LatLng(s,p),c=google.maps.geometry.spherical.computeDistanceBetween(o,i),l=621371e-9*c;if(l==t){let d=new google.maps.Polyline({path:[o,i],geodesic:!0,strokeColor:"#FF0000",strokeOpacity:1,strokeWeight:2});d.setMap(r)}}var u=new google.maps.Marker({position:o,title:"Home"});u.setMap(r);var $=new google.maps.InfoWindow({content:"Closest Car is: "+t});google.maps.event.addListener(u,"click",function(){$.open(r,u)}),google.maps.event.addListener(m,"click",function(){$.setContent(m.title),$.open(r,m)})}},request.send("username=uVnnFbz7&lat="+n+"&lng="+a)})}
+function init()
+{
+	var test = navigator.geolocation.getCurrentPosition(showPosition);
+
+	function showPosition(position) 
+    {
+  		var lat = position.coords.latitude;
+  		var lng = position.coords.longitude;
+  		const landmark = new google.maps.LatLng("42.4059372", "-71.1211839");
+  		var myOptions = 
+  		{
+  			zoom: 12, 
+      		center: landmark,
+      		mapTypeId: google.maps.MapTypeId.ROADMAP
+      	};
+      	var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+      	const car = "car.png";
+
+    	// Step 1: make an instance of XHR
+    	request = new XMLHttpRequest();
+    
+
+    	// Step 2: Make request to the JSON source...
+
+    	request.open('POST', 'https://quiet-cliffs-10971.herokuapp.com/rides', true);
+    	request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    	// Step 2A: Dealing with receiving the HTTP response from XHR
+    	request.onreadystatechange = function() 
+    	{
+    		// This function deals with receiving HTTP response...
+    		if (request.readyState == 4 && request.status == 200)  
+    		{
+    			const car = "car.png";
+    			resultingData = request.responseText; // responseText => string
+				parsedData = JSON.parse(resultingData);
+				var closestCar;
+				const carArr=[];
+				for (var i = 0; i < parsedData.length; i++) 
+		        {			        	
+		            var usName = parsedData[i].username;
+		            var lati = parsedData[i].lat;
+		            var long = parsedData[i].lng;
+		            var notUber = new google.maps.LatLng(lati, long);
+		            var dis = google.maps.geometry.spherical.computeDistanceBetween(landmark, notUber);
+		            var disMiles = dis * 0.000621371;
+		            
+		            carArr.push(disMiles);
+		            var markerCar = new google.maps.Marker({
+		            	position: notUber,
+		              	title: usName,
+		              	icon: car
+		            });
+		            markerCar.setMap(map);
+
+		        }
+		        closestCar = Math.min.apply(Math, carArr);
+		        for (var i = 0; i < parsedData.length; i++) 
+		        {
+		            var lati = parsedData[i].lat;
+		            var long = parsedData[i].lng;
+		            var usName = parsedData[i].username;
+		            var notUber = new google.maps.LatLng(lati, long);
+		            var dis = google.maps.geometry.spherical.computeDistanceBetween(landmark, notUber);
+		            var disMiles = dis * 0.000621371;
+		            if (disMiles==closestCar) 
+		            {
+		            	const carPath = new google.maps.Polyline(
+				        {
+						    path: [landmark, notUber],
+						    geodesic: true,
+						    strokeColor: "#FF0000",
+						    strokeOpacity: 1.0,
+						    strokeWeight: 2,
+						});
+						carPath.setMap(map);
+		            }
+
+		        }
+		        
+
+		        var marker = new google.maps.Marker(
+	          	{
+	          		position: landmark,
+	          		title: "Home"
+	          	});
+
+	          	marker.setMap(map);
+		        var infowindow = new google.maps.InfoWindow(
+		        	{  content:"Closest Car is: "+closestCar
+		        	});
+		        google.maps.event.addListener(marker, 'click', function() 
+	            {
+	          		infowindow.open(map, marker);
+	          	});
+	          	google.maps.event.addListener(markerCar, 'click', function() 
+	            {
+	            	infowindow.setContent(markerCar.title);
+	          		infowindow.open(map, markerCar);
+	          	});
+    		}
+    		
+		}
+		// Step 3: Send the request...
+		var nonDoxLat="42.4085371";
+        var nonDoxLng="-71.1204669";
+		var username = "TestyTest";
+    	var params = "username="+username+"&lat="+nonDoxLat+"&lng="+nonDoxLng;
+    	request.send(params);
+
+
+
+    	// Step 1: make an instance of XHR
+    	requestVehicles = new XMLHttpRequest();
+    
+
+    	// Step 2: Make request to the JSON source...
+
+    	requestVehicles.open('POST', 'https://quiet-cliffs-10971.herokuapp.com/checkin', true);
+    	requestVehicles.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    	// Step 2A: Dealing with receiving the HTTP response from XHR
+    	requestVehicles.onreadystatechange = function() 
+    	{
+    		// This function deals with receiving HTTP response...
+    		if (requestVehicles.readyState == 4 && requestVehicles.status == 200)  
+    		{
+    			resultingData = requestVehicles.responseText; // responseText => string
+				parsedData = JSON.parse(resultingData);
+				var closestPassenger;
+				const passengerArr=[];
+				for (var i = 0; i < parsedData.length; i++) 
+		        {			        	
+		            var usName = parsedData[i].username;
+		            var lati = parsedData[i].lat;
+		            var long = parsedData[i].lng;
+		            var notUber = new google.maps.LatLng(lati, long);
+		            var dis = google.maps.geometry.spherical.computeDistanceBetween(landmark, notUber);
+		            var disMiles = dis * 0.000621371;
+		            
+		            passengerArr.push(disMiles);
+		            var markerPass = new google.maps.Marker({
+		            	position: notUber,
+		              	title: usName,
+		              	icon: directions_walk
+		            });
+		            markerPass.setMap(map);
+
+		        }
+		        closestPassenger = Math.min.apply(Math, passengerArr);
+		        for (var i = 0; i < parsedData.length; i++) 
+		        {
+		            var lati = parsedData[i].lat;
+		            var long = parsedData[i].lng;
+		            var usName = parsedData[i].username;
+		            var notUber = new google.maps.LatLng(lati, long);
+		            var dis = google.maps.geometry.spherical.computeDistanceBetween(landmark, notUber);
+		            var disMiles = dis * 0.000621371;
+		            if (disMiles==closestCar) 
+		            {
+		            	const passPath = new google.maps.Polyline(
+				        {
+						    path: [landmark, notUber],
+						    geodesic: true,
+						    strokeColor: "#FF0000",
+						    strokeOpacity: 1.0,
+						    strokeWeight: 2,
+						});
+						passPath.setMap(map);
+		            }
+
+		        }
+		        
+
+		        var marker = new google.maps.Marker(
+	          	{
+	          		position: landmark,
+	          		title: "Home"
+	          	});
+
+	          	marker.setMap(map);
+		        var infowindow = new google.maps.InfoWindow(
+		        	{  content:"Closest Passenger is: "+closestPassenger
+		        	});
+		        google.maps.event.addListener(marker, 'click', function() 
+	            {
+	          		infowindow.open(map, marker);
+	          	});
+	          	google.maps.event.addListener(markerPass, 'click', function() 
+	            {
+	            	infowindow.setContent(markerPass.title);
+	          		infowindow.open(map, markerPass);
+	          	});
+    		}
+    		
+		}
+		// Step 3: Send the requestVehicles...
+		var nonDoxLat="42.4085371";
+        var nonDoxLng="-71.1204669";
+		var username = "Vroom";
+    	var params = "username="+username+"&lat="+nonDoxLat+"&lng="+nonDoxLng;
+    	requestVehicles.send(params);
+  	}        
+}
