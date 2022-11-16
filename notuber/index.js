@@ -140,7 +140,6 @@ function init()
 		            var markerPass = new google.maps.Marker({
 		            	position: notUber,
 		              	title: usName,
-		              	icon: directions_walk
 		            });
 		            markerPass.setMap(map);
 
@@ -154,7 +153,7 @@ function init()
 		            var notUber = new google.maps.LatLng(lati, long);
 		            var dis = google.maps.geometry.spherical.computeDistanceBetween(landmark, notUber);
 		            var disMiles = dis * 0.000621371;
-		            if (disMiles==closestCar) 
+		            if (disMiles==closestPassenger) 
 		            {
 		            	const passPath = new google.maps.Polyline(
 				        {
