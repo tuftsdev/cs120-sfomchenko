@@ -6,7 +6,8 @@ Lab12
 
 ### Identify what aspects of the work have been correctly implemented and what have not.
 
-* The base requirement is implemented. I implemented Beyond point 1, beyond point 2, and Beyond point 5.
+* The base requirement is implemented. I implemented Beyond point 1, beyond point 2, and Beyond point 5. 
+* Not asked but I also implemented a way to view the data from the table in the map
 
 ### Identify anyone with whom you have collaborated or discussed the lab.
 
@@ -14,7 +15,7 @@ Lab12
 
 ### Say approximately how many hours you have spent completing the lab.
 
-* 20 hours
+* 24 hours
 
 ### Impact of performance
 
