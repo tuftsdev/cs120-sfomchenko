@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Report</title>
+</head>
+<body>
+  <h1>Introduction</h1>
+  <p>
+    I am here to analyze if there are any security vulnerabilities within the provided node.js server.
+  </p>
+  <h1>Methodology</h1>
+  <p>
+    <ul>
+      <li>Inspected code</li>
+      <li>Use Burp Suite to monitior get requests</li>
+      <li>Curl commands</li>
+    </ul>
+  </p>
+  <h1>Abstract of Findings</h1>
+  <p>
+    Overall, there should be more of a focus on user input. With the get passenger.json and vehicles.json requests, the queries need to not be intermixed with code execution. Then with the rides post request, there is no prevention for a malicious person to automate the insertion into the passenger database. Creating false accounts. Finally, the \ get request displays you display the users private data, allowing doxing of location of users.
+  <h1>Issues Found</h1>
+  <p>
+  </p>
+  <h2>Issue 1</h2>
+  <p>
+    SQL Injection Vulnerability
+  </p>
+  <h2>Location</h2>
+  <p>
+    In the /passenger.json and /vehicle.json get request.
+  </p>
+  <h2>Severity of issue</h2>
+  <p>
+    High impact, this is due to the data release of sensitive private data.
+  </p>
+  <h2>Description</h2>
+  <p>
+    *Add image here*
+    I found it upon inspection of the code. When learning about this material in security, there was strong emphasis on not to mix code execution with direct user input.
+  </p>
+  <h2>Proof of vulnerability</h2>
+  <p>
+    *Execute curl and see response*
+  </p>
+  <h2>Resolution</h2>
+  <p>
+    The resolution would be to sanitize the input before passing it into the sql query, like showcased in the post /update section of the server. Also to not directly feed in user input to code that executes.
+  </p>
+  <h2>Issue 2</h2>
+  <p>
+    The / get route returns sensitive data, causing disclosed locations
+  </p>
+  <h2>Location</h2>
+  <p>
+    app.get('/', function(request, response) page.
+  </p>
+  <h2>Severity of issue</h2>
+  <p>
+    High, since this is easily displaying location of users.
+  </p>
+  <h2>Description</h2>
+  <p>
+    Allowing access to the passenger table data to be displayed on a webpage without any authorization can be harmful to the passengers. A malicious person can use that data to pretend to be not uber and steal customers or cause harm way. Think back to the news story about how a college female got into the wrong ride sharing car and was murdered.
+  </p>
+  <h2>Proof of vulnerability</h2>
+  <p>
+    *Picture of table displaying the data*
+    Found upon loading the / page
+  </p>
+  <h2>Resolution</h2>
+  <p>
+    Require vehicle picker uppers to have an account in order to see passenger data. Not have any user be able to see the data.
+  </p>
+  <h2>Issue 3</h2>
+  <p>
+    The /update post request does not prevent a mass creation of user accounts, which is an automated threat.
+  </p>
+  <h2>Location</h2>
+  <p>
+    app.post('/update', function(request, response)
+  </p>
+  <h2>Severity of issue</h2>
+  <p>
+    Medium, since technically there is not a data breach, but can be harmful if the system goes down.
+  </p>
+  <h2>Description</h2>
+  <p>
+    I found it by being able to enter a username a few times over.
+  </p>
+  <h2>Proof of vulnerability</h2>
+  <p>
+  </p>
+  <h2>Resolution</h2>
+  <p>
+    Verify that the user exists by checking their username. Require verification to add to the updates.
+  </p>
+  <h1>Conclusion</h1>
+  <p>
+    I would suggest hiring a penetration test team to thoroughly sweep the application. Or at the very least one person who has the background knowledge of security. Can also require developers to gain certificates to understand not to make these mistakes again. I would say you are easily looking at the cost of over 100k in order to alleviate and prevent this from happening again. It could be millions if you get sued.
+  </p>
+</body>
+</html>
